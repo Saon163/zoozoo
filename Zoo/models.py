@@ -36,7 +36,7 @@ class Animal(models.Model):
     anm_sex = models.CharField(max_length=20)
     anm_birth = models.DateField(blank=True, null=True)
     anm_rct = models.CharField(max_length=45)
-    anm_img = models.TextField(blank=True, null=True)
+    anm_img = models.ImageField(null=True, upload_to="", blank=True)  # 이미지 컬럼 추가
     zone_id = models.ForeignKey('Zone', on_delete=models.CASCADE)
 
 class DetailLog(models.Model):

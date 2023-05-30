@@ -12,7 +12,8 @@
      <th>sex</th>
      <th>birth</th>
      <th>rct</th>
-     <th>Area_id
+     <th>Area_id </th>
+     <th> 이미지 </th>
      <th> Update </th>
   </tr>
   <tr>
@@ -25,6 +26,9 @@
     <td> {{ animal.anm_birth }}</td>
     <td> {{ animal.anm_rct }}</td>
     <td> {{ animal.zone_id }}</td>
+    <td> {% if animal.anm_img %}
+        <img src="{{ animal.anm_img.url }}" heigth="100", width="50">
+{% endif %}</td>
     <td> <a class="btn btn-info" href ="{%url 'animal_update' animal.anm_id %}" >Update  </a> <td>
     </tr>
   {%endfor%}
@@ -35,5 +39,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 </div>
+
+{% if product.imgfile %}
+<div class="container border col-10">
+    <div style="width:10%; height:150px; float:left; margin-right:10px;">
+        <img src="{{ product.imgfile.url }}" width="700">
+    </div>
+{% endif %}
+
 </body>
 </html>

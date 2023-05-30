@@ -8,5 +8,3 @@ admin.site.register(CheckLog)
 admin.site.register(DetailLog)
 admin.site.register(Parttime)
 admin.site.register(Zookeeper)
-
-

@@ -10,8 +10,7 @@ def animal_list(request):
 
 
 def animal_create(request):
-    form = AnimalForm(request.POST or None)
-
+    form = AnimalForm(request.POST or None, request.FILES)
     if form.is_valid():
         form.save()
         return redirect('animal_list')
