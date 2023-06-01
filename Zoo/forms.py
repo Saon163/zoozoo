@@ -10,3 +10,6 @@ class ZoneForm(forms.ModelForm):
     class Meta:
         model = Zone
         fields = '__all__'
+
+class AnimalSearchForm(forms.Form):
+    query = forms.CharField(label='검색어', max_length=100)

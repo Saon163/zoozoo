@@ -27,7 +27,7 @@
     <td> {{ animal.anm_rct }}</td>
     <td> {{ animal.zone_id }}</td>
     <td> {% if animal.anm_img %}
-        <img src="{{ animal.anm_img.url }}" heigth="100", width="50">
+        <img src="{{ animal.anm_img.url }}" heigth=100, width=50>
 {% endif %}</td>
     <td> <a class="btn btn-info" href ="{%url 'animal_update' animal.anm_id %}" >Update  </a> <td>
     </tr>
@@ -35,6 +35,8 @@
 </table>
 
 <a class="btn btn-info pull-right" href = "{%url 'animal_add' %}"> New Member </a>
+<a href="{% url 'animal_search' %}">검색하기</a>
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 

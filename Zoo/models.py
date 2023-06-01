@@ -58,3 +58,6 @@ class CheckLog(models.Model):
     clog_lm = models.IntegerField(blank=True, null=True)
     clog_em = models.IntegerField(blank=True, null=True)
 
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>검색 페이지</title>
+</head>
+<body>
+    <h2>검색</h2>
+
+    <form action="{% url 'animal_search' %}" method="GET">
+        {{ form }}
+        <button type="submit">검색</button>
+    </form>
+
+    {% if query %}
+        <h3>검색 결과: "{{ query }}"</h3>
+        <ul>
+            {% for animal in animal %}
+                <li>
+                    <h4>{{ animal.anm_id }}</h4>
+                    <p>{{ animal.anm_name }}</p>
+                </li>
+            {% empty %}
+                <li>검색 결과가 없습니다.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
