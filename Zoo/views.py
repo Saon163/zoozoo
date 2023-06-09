@@ -1,16 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import Post
 from .forms import AnimalSearchForm
 from django.shortcuts import render, get_object_or_404
 from Zoo.models import Area, Zone, Animal, CheckLog, DetailLog, Parttime, Zookeeper, Post
 from Zoo.forms import AnimalForm
 
-
-def animal_list(request):
-    animals = Animal.objects.all()
-    return render(request, 'animal/animal_list.html', {'animals' : animals})
 
 
 def animal_create(request):
@@ -54,15 +49,44 @@ def animal_search(request):
     context = {'form': form}
     return render(request, 'animal/search.html', context)
 
-def zkp_main(request):
-    # 메인 페이지를 나타내는 데이터 로직
-    return render(request, 'zkpmain.html')
+from django.shortcuts import render, get_object_or_404
+from .models import Animal,Zone
 
-def animal_detail(request):
-    monkey_animals = Animal.objects.filter(anm_spcs="Monkey")
-    return render(request, 'zoogle/animal_detail.html', {'monkey_animals': monkey_animals})
+def zone(request):
+    return render(request, 'zone.html')
 
-def animal_zone(request, anm_spcs):
-    animal = get_object_or_404(Animal, anm_spcs=anm_spcs)
-    # 해당 anm_spcs에 대한 데이터 로직
-    return render(request, 'zoogle/zone.html', {'animal': animal})
+def detail(request):
+    return render(request, 'animal_detail.html')
+
+def animal_list(request):
+    animals = Animal.objects.all()
+    context = {'animals': animals}
+    return render(request, 'index.html', context)
+
+from Zoo.forms import CheckLogForm
+
+
+##여기 아직 미완성
+def checklog_create(request):
+    if request.method == 'POST':
+        form = CheckLogForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('animal_list')
+    else:
+        form = CheckLogForm()
+
+    return render(request, 'checklog/checklog_create.html', {'form': form})
+
+
+def search(request):
+    blogs = Blog.objects.all().order_by('-id')
+
+    q = request.POST.get('q', "")
+
+    if q:
+        blogs = blogs.filter(title__icontains=q)
+        return render(request, 'search.html', {'blogs': blogs, 'q': q})
+
+    else:
+        return render(request, 'search.html')
